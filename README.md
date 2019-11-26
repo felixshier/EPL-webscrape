@@ -1,2 +1,3 @@
 # pl_scrape
-Jupyter Notebook designed to scrape premierleague.com/clubs for the purpose of retrieving data from individual players.
+.py file to scrape premierleague.com for all player data (names, clubs, positions, ages, nationalities, heights, weights)
+.csv file containing data
