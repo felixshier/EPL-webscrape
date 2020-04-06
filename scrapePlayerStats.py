@@ -1,8 +1,6 @@
-import numpy as np
 import pandas as pd
-from bs4 import BeautifulSoup, SoupStrainer
+from bs4 import BeautifulSoup
 import requests
-import lxml
 import time
 
 # import & parse webpage consisting of all premier league clubs
