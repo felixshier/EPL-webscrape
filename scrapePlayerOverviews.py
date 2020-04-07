@@ -134,5 +134,42 @@ d = {
     }
 # dictionary -> dataframe
 playerOverview = pd.DataFrame(d)
+
+playerOverview.dropna(axis = 0, inplace = True)
+playerOverview.reset_index(drop=True, inplace=True)
+
+loan = []
+for i in range(len(playerOverview)):
+    club = playerOverview['Club'][i]
+    if '(Loan)' in club:
+        loan.append(True)
+        club = club.replace('(Loan)', '')
+        playerOverview['Club'][i] = club
+    else:
+        loan.append(False)
+playerOverview['On Loan'] = loan
+
+# remove 'cm' from Height collumn then turn Height into an integer value
+for i in range(len(playerOverview)):
+            height = playerOverview['Height'][i]
+            newHeight = ''
+            for letter in height:
+                if not(letter.isalpha()):
+                    newHeight += letter
+            newHeight = int(newHeight)
+            playerOverview['Height'][i] = newHeight
+            
+# remove 'kg' from Weight collumn then turn Weight into an integer value
+for i in range(len(playerOverview)):
+            weight = playerOverview['Weight'][i]
+            newWeight = ''
+            for letter in weight:
+                if not(letter.isalpha()):
+                    newWeight += letter
+            newWeight = int(newWeight)
+            playerOverview['Weight'][i] = newWeight
+            
+playerOverview.rename(columns={'Height': 'Height (cm)', 'Weight': 'Weight (kg)'}, inplace=True)            
+
 # export to .csv
 playerOverview.to_csv(r'C:\Users\Felix\Documents\pl_scrape\playerOverviews.csv')
